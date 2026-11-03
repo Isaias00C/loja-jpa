@@ -72,4 +72,27 @@ public class ProdutoDAO {
         }
     }
 
+    public boolean deletar(Integer id){
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+
+        try{
+            tx.begin();
+            Produto produto_excluido = em.find(Produto.class, id);
+
+            if(produto_excluido == null){
+                tx.rollback();
+                return false;
+            }
+
+            em.remove(produto_excluido);
+            tx.commit();
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            throw e;
+        }finally {
+            em.close();
+        }
+    }
 }
