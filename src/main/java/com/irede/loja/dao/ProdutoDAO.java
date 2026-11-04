@@ -48,7 +48,7 @@ public class ProdutoDAO {
         }
     }
 
-    public Produto buscarPorId(Integer id){
+    public Produto buscarPorId(Long id){
         EntityManager em = JPAUtil.getEntityManager();
         try{
             return em.find(Produto.class, id);
@@ -72,7 +72,7 @@ public class ProdutoDAO {
         }
     }
 
-    public boolean deletar(Integer id){
+    public boolean deletar(Long id){
         EntityManager em = JPAUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
 
